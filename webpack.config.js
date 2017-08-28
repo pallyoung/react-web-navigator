@@ -37,6 +37,8 @@ module.exports = function (env) {
             filename: '[name].bundle.js',
         };
         config.entry = { 'index': './test/js/index.js' }
+        config.devtool = 'source-map';
+        
     }
     return config;
 }
