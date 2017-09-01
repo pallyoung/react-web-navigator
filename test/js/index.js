@@ -3,7 +3,7 @@ import Navigator from './../../src';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import routeConfigMap from './routeConfigMap'
 class Hello extends React.Component{
     constructor(...props){
         super(...props);
@@ -28,8 +28,11 @@ class List extends React.Component{
         })
     }
     render(){
-        return <div>
-              {this._renderList()}  
+        return <div style = {{width:'100%',height:'100%'}}>
+              <Navigator
+                routeConfigMap = {routeConfigMap} 
+                initalRoute = 'main'
+                style = {{width:'100%',height:'100%'}}/>
         </div>
     }
 }
@@ -51,6 +54,8 @@ class Main extends React.Component{
         return <List />
     }
 }
-window.addEventListener('load',function(){
-    
-    ReactDOM.render(<Main />,document.getElementById('root'),function(component){console.log(this)})},false)
+window.addEventListener('load',function(){   
+    ReactDOM.render(<Main />,
+        document.getElementById('root'))
+    }
+    ,false)

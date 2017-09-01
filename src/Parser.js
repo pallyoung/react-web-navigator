@@ -11,8 +11,7 @@ var COLON = ':';
 var HASH_KEY = '#';
 var SEARCH_KEY = '?';
 
-function parseURL(url) {
-    url = location.href
+function urlToLocation(url) {
     var href = url;
     var state = 1;
     var i = 0, l = href.length;
@@ -96,4 +95,53 @@ function parseURL(url) {
         protocol
     }
 }
-export default parseURL;
+
+function parseQueryString(queryString){
+    if(!queryString){
+        return ;
+    }else{
+        var pairs = queryString.split('&');
+        var search = {};
+        var pair;
+        for(var i = 0,l=pairs.length;i<l;i++){
+            pair = pairs[i].split('=');
+            search[pair[0]] = pair[1];
+        }
+        return search;
+    }
+}
+function parsePath(path){
+    if(!path){
+        return [];
+    }else{
+        return path.split(PATH_SEPARATOR);
+    }
+}
+
+function hashToURI(hash){
+    hash = hash[0]===HASH_KEY?hash.slice(1):hash;
+    var index = hash.indexOf(SEARCH_KEY);
+    var queryString = '',search,path;
+    if(index>0){
+        queryString = hash.slice(index);
+        hash = hash.slice(0,index);
+    }
+    search = parseQueryString(queryString);
+    path = parsePath(hash);
+    return 
+}
+function URI(url){
+    var location;
+    if(url){
+        location = urlToLocation(url);
+    }else{
+        location = window.location;
+    }
+    return hashToURI(location.hash);
+     
+}
+export default {
+    hashToURI,
+    urlToLocation,
+    URI
+}
