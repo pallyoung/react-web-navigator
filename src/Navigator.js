@@ -14,7 +14,7 @@ function Route(component, path, name) {
 }
 
 Location.on('change',function(e){
-
+    
 });
 class Navigator extends Component {
     constructor(...props) {
@@ -23,19 +23,21 @@ class Navigator extends Component {
 
         }
         var routeConfig = this.props.routeConfigMap[this.props.initalRoute];
-        this._routeStacks = [Route(routeConfig.component, routeConfig.path, routeConfig.name)];
+        this._routeStacks = [Route(routeConfig.component, routeConfig.path, routeConfig.name)];     
     }
-    _dipathUri(){
+    componentWillMount() {
+ 
+    }
+    componentDidMount() {
         
+    }
+    
+    
+    componentWillUnmount() {
+
     }
     getChildContext() {
         return { parent: this }
-    }
-    componentWillMount() {
-
-    }
-    componentWillUnmount() {
-
     }
     _getRouteConfig(name) {
         return this.props.routeConfigMap && this.props.routeConfigMap[name] || null;
@@ -43,7 +45,7 @@ class Navigator extends Component {
     _renderScenes() {
         var routeStacks = this._routeStacks;
         return routeStacks.map((route, i) => {
-            return <Scene key={route.key} child={route.component} isCurrent={routeStacks.length == i + 1} />
+            return <Scene key={route.key} child={route.component} />
         })
     }
 
@@ -55,7 +57,7 @@ class Navigator extends Component {
         Location.goBack(1);
 
     }
-    popTo(name) {
+    goBackTo(name) {
         var i = 0, l = this._routeStacks.length;
         for (; i < l; i++) {
             if (name = this._routeStacks[i].name) {
