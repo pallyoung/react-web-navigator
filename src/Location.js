@@ -2,6 +2,10 @@
 import Parser from './Parser';
 var uri = Parser.hashToURI(location.hash);
 var CHANGE = 'change';
+if(uri == undefined){
+    location.hash = '#/';
+    uri = Parser.hashToURI('#/');
+}
 window.addEventListener('hashchange', function (e) {
     var oldUri = uri;
     var newUri = Parser.URI(e.newURL)

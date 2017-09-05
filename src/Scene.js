@@ -6,15 +6,16 @@ class Scene extends React.Component {
         super(...props);
     }
     _style() {
+        console.log(this.props.uri,this.props.route.uri)
         return {
             ...this.props.style,
             ...baseStyle,
-            display: this.props.isCurrent ? 'block' : 'none'
+            display: this.props.uri.path === this.props.route.uri.path
         }
     }
     _mountChild(){
-        var Child = this.props.child;
-        return <Child />
+        var route = this.props.route;
+        return <route.component navigator = {this.props.navigator} uri = {this.props.route.uri}/>
     }
     render() {
         return <div

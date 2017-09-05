@@ -111,11 +111,12 @@ function parseQueryString(queryString){
     }
 }
 function parsePath(path){
-    if(!path){
-        return [];
-    }else{
-        return path.split(PATH_SEPARATOR);
-    }
+    return path;
+    // if(!path){
+    //     return [];
+    // }else{
+    //     return path.split(PATH_SEPARATOR);
+    // }
 }
 
 function hashToURI(hash){
@@ -128,7 +129,7 @@ function hashToURI(hash){
     }
     search = parseQueryString(queryString);
     path = parsePath(hash);
-    return 
+    return {path,search};
 }
 function URI(url){
     var location;

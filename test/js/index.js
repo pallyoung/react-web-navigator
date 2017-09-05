@@ -7,7 +7,6 @@ import routeConfigMap from './routeConfigMap'
 class Hello extends React.Component{
     constructor(...props){
         super(...props);
-        console.log(this.props.index)
     }
     render(){
         console.log(this.props.index+'render')
