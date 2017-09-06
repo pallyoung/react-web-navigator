@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Scene from './Scene';
 import Location from './Location';
 var key = 1
-function Route(component, path, name,uri) {
+function Route(component, path, name, uri) {
     return {
         component,
         path,
@@ -35,6 +35,7 @@ class Navigator extends Component {
         this._routeStacks = [];
         this._routeNameDict = {};
         this._routePathDict = {}
+        this._currentIndex = -1;
     }
     componentWillReceiveProps(nextProps) {
         this._setRouteDicts(nextProps.routeConfigMap);
@@ -43,15 +44,41 @@ class Navigator extends Component {
         var self = this;
         this._setRouteDicts(this.props.routeConfigMap);
         this._routeStacks.push(this._routeWithUri(this.uri));
+        this._currentIndex = 0;
         this._changeHandle = function (e) {
-            if(e.newUri.path == this.uri.path){
-                //goback
+            var uri = e.newUri;
+            self.referrer = self.uri;
+            self.uri = uri;
+            if (e.action === 'push') {
+                self._routeStacks.length = self._currentIndex+1;
+                var routeConfig = self._routePathDict[uri.path];
+                self._routeStacks.push(Route(routeConfig.component, routeConfig.path, routeConfig.name, uri));
+                self._currentIndex = self._routeStacks.length - 1;
+                self.forceUpdate();
+            } else {
+                var delta = self._currentIndex + e.delta;
+                if (delta > self._routeStacks.length - 1) {
+                    self._routeStacks = self._routeStacks.concat(new Array(delta - self._routeStacks.length + 1));
+                } else if (delta < 0) {
+                    self._routeStacks = new Array(-delta).concat(self._routeStacks);
+                }
+                var route = self._routeStacks[delta];
+
+                if (!route) {
+                    var routeConfig = self._routePathDict[uri.path];
+                    route = Route(routeConfig.component, routeConfig.path, routeConfig.name, uri);
+                    self._routeStacks[delta] = route;
+                }
+                self.forceUpdate();
+                self._currentIndex = delta;
             }
+
+
         }
         Location.on('change', this._changeHandle);
     }
     componentDidMount() {
-        
+
     }
 
 
@@ -64,7 +91,7 @@ class Navigator extends Component {
         for (var o in routeConfigMap) {
             var route = routeConfigMap[o];
             route.name = o;
-            if(routeConfigMap.hasOwnProperty(o)){
+            if (routeConfigMap.hasOwnProperty(o)) {
                 routeNameDict[o] = route;
                 routePathDict[route.path] = route;
             }
@@ -73,11 +100,11 @@ class Navigator extends Component {
         this._routePathDict = routePathDict;
     }
     _routeWithUri(uri) {
-        if(!uri){
+        if (!uri) {
             uri = {}
         }
-        var routeConfig = this._routePathDict[uri.path]||this._routeNameDict[this.props.initalRoute];   
-        return Route(routeConfig.component,routeConfig.path,routeConfig.name,uri);
+        var routeConfig = this._routePathDict[uri.path] || this._routeNameDict[this.props.initalRoute];
+        return Route(routeConfig.component, routeConfig.path, routeConfig.name, uri);
     }
     _routeConfigWithName(name) {
         return this._routeNameDict[name];
@@ -85,7 +112,7 @@ class Navigator extends Component {
     _renderScenes() {
         var routeStacks = this._routeStacks;
         return routeStacks.map((route, i) => {
-            return <Scene key={route.key} route={route} uri = {this.uri} navigator = {this}/>
+            return <Scene key={route.key} route={route} uri={this.uri} navigator={this} />
         })
     }
 

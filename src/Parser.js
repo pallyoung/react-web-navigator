@@ -98,7 +98,7 @@ function urlToLocation(url) {
 
 function parseQueryString(queryString){
     if(!queryString){
-        return ;
+        return {};
     }else{
         var pairs = queryString.split('&');
         var search = {};
@@ -120,6 +120,9 @@ function parsePath(path){
 }
 
 function hashToURI(hash){
+    if(!hash){
+        return {path:undefined,search:{},key:undefined}
+    }
     hash = hash[0]===HASH_KEY?hash.slice(1):hash;
     var index = hash.indexOf(SEARCH_KEY);
     var queryString = '',search,path;
@@ -129,7 +132,7 @@ function hashToURI(hash){
     }
     search = parseQueryString(queryString);
     path = parsePath(hash);
-    return {path,search};
+    return {path,search,key:hash};
 }
 function URI(url){
     var location;

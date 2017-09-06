@@ -6,11 +6,10 @@ class Scene extends React.Component {
         super(...props);
     }
     _style() {
-        console.log(this.props.uri,this.props.route.uri)
         return {
             ...this.props.style,
             ...baseStyle,
-            display: this.props.uri.path === this.props.route.uri.path
+            display: this.props.uri.path === this.props.route.uri.path?'block':'none'
         }
     }
     _mountChild(){
@@ -19,6 +18,7 @@ class Scene extends React.Component {
     }
     render() {
         return <div
+            id = {'#'+this.props.route.uri.key}
             children={this._mountChild()}
             style={this._style()} />
     }

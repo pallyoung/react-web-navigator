@@ -4,6 +4,7 @@ import Navigator from './../../src';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import routeConfigMap from './routeConfigMap'
+window.routeConfigMap = routeConfigMap;
 class Hello extends React.Component{
     constructor(...props){
         super(...props);

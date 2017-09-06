@@ -6,10 +6,17 @@ class PageList extends Component {
         this.state = {
 
         }
-
     }
+    _renderList(){
+        return Object.keys(routeConfigMap).map((key)=>{
+            return <p children = {key} key = {key} onClick = {()=>this.props.navigator.push(key)}/>
+        });
+    }
+
     render(){
-        return <div>PageList</div>
+        return <div>
+            {this._renderList()}
+        </div>
     }
 }
 
