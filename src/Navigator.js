@@ -124,7 +124,7 @@ class Navigator extends Component {
         Location.push(route.path + makeParams(params));
     }
     goBack() {
-        Location.goBack(1);
+        Location.back();
 
     }
     goBackTo(name) {
@@ -138,7 +138,7 @@ class Navigator extends Component {
     }
     render() {
         return <div
-            style={[{ height: '100%', width: '100%', position: 'relative' }, this.props.style]}>
+            style={{ height: '100%', width: '100%', position: 'relative',...this.props.style}}>
             {this._renderScenes()}
         </div>
     }

@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import routeConfigMap from './routeConfigMap'
 import StatusBar from './pages/component/StatusBar'
+import NavigationBar from './pages/component/NavigationBar'
 window.routeConfigMap = routeConfigMap;
 class Hello extends React.Component {
     constructor(...props) {
@@ -57,7 +58,9 @@ class Main extends React.Component {
             <Navigator
                 routeConfigMap={routeConfigMap}
                 initalRoute='main'
-                style={{ width: '100%', height: '100%' }} />
+                ref = 'Navigator'
+                style = {{height:document.body.clientHeight - 64}}/>
+            <NavigationBar getNavigator = {()=>this.refs.Navigator} />
         </div>
     }
 }
