@@ -92,3 +92,16 @@ input:focus{
 .button.blue{
     background-color: #31A2E8
 }
+.status-bar{
+    font-size:10px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;    
+    position: relative;
+    text-align: right
+}
+.battery{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+}
