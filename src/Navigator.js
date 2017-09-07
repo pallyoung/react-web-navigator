@@ -131,7 +131,7 @@ class Navigator extends Component {
         var i = 0, l = this._routeStacks.length;
         for (; i < l; i++) {
             if (name = this._routeStacks[i].name) {
-                Location.goBack(l - i - 1);
+                Location.go(-l + i + 1);
                 return;
             }
         }
