@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Main from './pages/Main';
 import UserCenter from './pages/UserCenter';
 import PageList from './pages/PageList';
+import Login from './pages/Login';
 
 export default {
     home:{
@@ -20,5 +21,9 @@ export default {
     pagelist:{
         path:'/pagelist',
         component:PageList 
+    },
+    login:{
+        path:'/login',
+        component:Login
     }
 }

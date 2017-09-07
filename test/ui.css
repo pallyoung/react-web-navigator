@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 150px;
+    height:100%;
+    width:100%;
+}
+body{
+    height:100%;
+    width:100%;
+}
+body,p,div,input,a{
+    font-size:0.1rem;
+}
+
+input{
+    border: 1px solid rgb(16, 134, 232);       
+    line-height: 2em;    
+}
+
+.header{
+    background-color: rgb(16, 134, 232); 
+    height: 44px;
+    line-height: 44px;
+}
+.header .title{
+    color:white;
+}
+
+.row{
+    margin:0 0 0.05rem 0;
+}
+.row .label,.row .input{
+    display: inline-block;
+    height: 0.2rem;  
+    line-height:0.2rem; 
+}
+.row .label {
+    width:25%
+}
+.row .input{
+    border:none;   
+    width: 75%;
+}
+input:focus{
+    border: none;
+    outline: none
+}
+.margin-horizontal{
+    margin: 0 0.2rem
+}
+.padding-horizontal{
+    padding: 0 0.2rem
+}
+
+.row .border{
+    background-color: #31A2E8; 
+    height:1px;        
+    margin:0.05rem auto 0 auto;
+    transition: width 0.5s;
+    width:0;
+}
+.row .border.focus{
+    width: 100%
+}
+
+.button{
+  border-radius: 5px;    
+  color:white;
+  display:inline-block;
+  font-size: 15px;  
+  height: 36px;
+  line-height: 36px;
+  margin: 0 auto;  
+  text-align: center;
+}
+.button.small{
+    width: 80px
+}
+
+.button.middle{
+    width: 120px
+}
+.button.lagre{
+    width: 2rem
+}
+.button.red{
+    background-color: #E84630
+}
+.button.blue{
+    background-color: #31A2E8
+}

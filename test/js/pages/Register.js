@@ -1,6 +1,6 @@
 'use strict'
 import React, { Component } from 'react';
-class UserCenter extends Component {
+class Register extends Component {
     constructor(...props) {
         super(...props);
         this.state = {
@@ -10,10 +10,9 @@ class UserCenter extends Component {
     }
     render(){
         return <div>
-                <p>登录成功</p>
-                <p>用户名：{this.props.uri.search.username}</p>
-            </div>
+            <p>用户名:</p>
+        </div>
     }
 }
 
-export default UserCenter;
+export default Register;

@@ -15,13 +15,16 @@ function Route(component, path, name, uri) {
 }
 
 function makeParams(params) {
-    var queryString = '?';
+    var  queryStringArr= [];
     for (var o in params) {
         if (params.hasOwnProperty(o)) {
-            queryString += o + '=' + params[o];
+            queryStringArr.push(o + '=' + params[o]);
         }
     }
-    return queryString;
+    if(queryStringArr.length>0){
+        return '?'+queryStringArr.join('&');
+    }
+    return '';
 }
 
 class Navigator extends Component {

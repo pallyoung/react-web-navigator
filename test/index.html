@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>test</title>
     <script src = 'index.bundle.js'></script>
+    <link rel="stylesheet" href="ui.css">
+    <script>
+        var fontSize =  document.documentElement.clientWidth/375*150;
+        document.write('<style> html{font-size: '+fontSize+'px}</style>');
+    </script>
 </head>
 <body>
     <div id = 'root'></div>
