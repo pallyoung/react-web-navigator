@@ -153,6 +153,8 @@ window.addEventListener('hashchange', function (e) {
     }
     Location.uri = newUri;
     CURRENT_INDEX += historyAction.delta;
+    URI_STATES.length  = CURRENT_INDEX+1;
+    
     emit(CHANGE, Event(CHANGE, {
         oldUri,
         newUri,

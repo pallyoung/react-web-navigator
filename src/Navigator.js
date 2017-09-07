@@ -72,6 +72,7 @@ class Navigator extends Component {
                     route = Route(routeConfig.component, routeConfig.path, routeConfig.name, uri);
                     self._routeStacks[delta] = route;
                 }
+                self._routeStacks.length = delta+1;
                 self.forceUpdate();
                 self._currentIndex = delta;
             }
