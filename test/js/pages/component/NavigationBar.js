@@ -21,6 +21,7 @@ class Navigation extends Component {
                 strokeWidth='2'
                 stroke = 'white' 
                 cx={width/2}
+                onClick = {()=>this.props.getNavigator().goBackTo('main')}
                 cy="24"
                 r = '10'/>
             <rect
