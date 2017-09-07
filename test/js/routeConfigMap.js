@@ -4,6 +4,7 @@ import Main from './pages/Main';
 import UserCenter from './pages/UserCenter';
 import PageList from './pages/PageList';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 export default {
     home:{
@@ -25,5 +26,9 @@ export default {
     login:{
         path:'/login',
         component:Login
-    }
+    },
+    register:{
+        path:'/register',
+        component:Register
+    },
 }

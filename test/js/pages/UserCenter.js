@@ -1,5 +1,6 @@
 'use strict'
 import React, { Component } from 'react';
+import PaddingDiv from './component/PaddingDiv'; 
 class UserCenter extends Component {
     constructor(...props) {
         super(...props);
@@ -9,10 +10,11 @@ class UserCenter extends Component {
 
     }
     render(){
-        return <div>
-                <p>登录成功</p>
-                <p>用户名：{this.props.uri.search.username}</p>
-            </div>
+        return <PaddingDiv>
+                <p style = {{
+                    fontSize:'0.1rem'
+                }}>{this.props.uri.search.username}，您已经成功登录！</p>
+            </PaddingDiv>
     }
 }
 

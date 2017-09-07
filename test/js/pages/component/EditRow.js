@@ -28,7 +28,7 @@ class EditRow extends Component {
                         onBlur = {(e)=>this._onBlur(e)}
                         placeholder = {this.props.placeholder}
                         onChange = {this.props.onChange} 
-                        type="text" />
+                        type={this.props.security?'password':'text'} />
                 </p>
                 <p className = {this.state.isFocused?'border focus':'border'}/>
             </div>

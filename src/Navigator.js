@@ -145,6 +145,7 @@ class Navigator extends Component {
 }
 Navigator.propTypes = {
     initalRoute: PropTypes.string,
+    errorRoute:PropTypes.string,
     cacheBound: PropTypes.number,
     routeConfigMap: PropTypes.any
 }
